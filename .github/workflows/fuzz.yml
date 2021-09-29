@@ -12,7 +12,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: test
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+
+      - name: setup webapp
         run: |
-          docker --version
-          docker-compose --version
+          docker-compose build
+          docker-compose up -d
+
+      - name: clone fuzzing scenario
+        run: |
+          git clone https://github.com/shfz/demo-typescript
+          ls
+
+      - name: check
+        run: |
+          docker ps
