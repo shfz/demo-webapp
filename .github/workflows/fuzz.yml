@@ -22,13 +22,13 @@ jobs:
           docker-compose up -d
           docker-compose ps -a
 
-      - name: clone fuzzing scenario
+      - name: setup fuzzing scenario
         run: |
           git clone https://github.com/shfz/demo-typescript
           cd demo-typescript
           yarn install
           ./node_modules/typescript/bin/tsc index.ts
-          cat index.js
+          file index.js
 
       - name: install fzcli
         run: |
@@ -36,3 +36,11 @@ jobs:
           tar -zxvf fzcli_0.0.2_linux_amd64.tar.gz
           sudo chmod +x fzcli
           ./fzcli --help
+
+      - name: wait
+        run: |
+          sleep 20
+
+      - name: fuzzing
+        run: |
+          ./fzcli -t demo-typescript/index.js -o ./ -p 5 -n 20 -v off
