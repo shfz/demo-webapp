@@ -24,8 +24,14 @@ jobs:
       - name: clone fuzzing scenario
         run: |
           git clone https://github.com/shfz/demo-typescript
-          ls
+          cd demo-typescript
+          yarn install
+          ./node_modules/typescript/bin/tsc index.ts
+          cat index.js
 
-      - name: check
+      - name: install fzcli
         run: |
-          docker ps
+          wget https://github.com/shfz/fzcli/releases/download/v0.0.2/fzcli_0.0.2_linux_amd64.tar.gz
+          tar -zxvf fzcli_0.0.2_linux_amd64.tar.gz
+          sudo chmod +x fzcli
+          ./fzcli --help
