@@ -30,14 +30,14 @@ jobs:
           ./node_modules/typescript/bin/tsc index.ts
           file index.js
 
-      - name: install fzcli
+      - name: setup fzcli
         run: |
           wget https://github.com/shfz/fzcli/releases/download/v0.0.2/fzcli_0.0.2_linux_amd64.tar.gz
           tar -zxvf fzcli_0.0.2_linux_amd64.tar.gz
           sudo chmod +x fzcli
           ./fzcli --help
 
-      - name: wait
+      - name: wait for mysql
         run: |
           sleep 20
 
