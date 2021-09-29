@@ -1,0 +1,46 @@
+name: fuzz
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+
+      - name: setup webapp
+        run: |
+          docker-compose build
+          docker-compose up -d
+          docker-compose ps -a
+
+      - name: setup fuzzing scenario
+        run: |
+          git clone https://github.com/shfz/demo-typescript
+          cd demo-typescript
+          yarn install
+          ./node_modules/typescript/bin/tsc index.ts
+          file index.js
+
+      - name: setup fzcli
+        run: |
+          wget https://github.com/shfz/fzcli/releases/download/v0.0.2/fzcli_0.0.2_linux_amd64.tar.gz
+          tar -zxvf fzcli_0.0.2_linux_amd64.tar.gz
+          sudo chmod +x fzcli
+          ./fzcli --help
+
+      - name: wait for mysql
+        run: |
+          sleep 20
+
+      - name: fuzzing
+        run: |
+          ./fzcli run -t demo-typescript/index.js -o ./ -p 5 -n 1000 -v off
