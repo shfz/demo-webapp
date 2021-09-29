@@ -20,6 +20,7 @@ jobs:
         run: |
           docker-compose build
           docker-compose up -d
+          docker-compose ps -a
 
       - name: clone fuzzing scenario
         run: |
