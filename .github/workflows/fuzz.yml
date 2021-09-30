@@ -44,3 +44,7 @@ jobs:
       - name: fuzzing
         run: |
           ./fzcli run -t demo-typescript/index.js -o ./ -p 5 -n 1000 -v off
+
+      - name: display application log
+        run: |
+          docker logs demo-webapp_app_1
