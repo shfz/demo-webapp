@@ -1,11 +1,11 @@
-name: fuzz
+name: fuzzing
 
 on:
   push:
   workflow_dispatch:
 
 jobs:
-  build:
+  fuzzing:
     runs-on: ubuntu-latest
 
     timeout-minutes: 20
@@ -29,7 +29,7 @@ jobs:
           ./node_modules/typescript/bin/tsc scenario.ts
           file scenario.js
 
-      - name: setup fzcli
+      - name: setup shfz
         run: |
           wget https://github.com/shfz/shfz/releases/download/v0.0.2/shfz_0.0.2_linux_amd64.tar.gz
           tar -zxvf shfz_0.0.2_linux_amd64.tar.gz
@@ -45,8 +45,7 @@ jobs:
       - name: run fuzzing
         run: ./shfz run -f fuzz/scenario.js -n 100
 
-      - id: report
-        name: export report
+      - name: export fuzzing report
         run: >
           curl
           -F "hash=${{ github.sha }}"
@@ -63,7 +62,8 @@ jobs:
           content-filepath: ./report.md
           labels: |
             shfz
-      - name: export data
+
+      - name: export fuzzing data
         run: curl http://localhost:53653/data > result.json
       - name: upload artifact
         uses: actions/upload-artifact@v2
@@ -71,7 +71,7 @@ jobs:
           name: result.json
           path: ./result.json
 
-      - name: save application log
+      - name: export application log
         run: docker logs demo-webapp_app_1 > app.log
       - name: upload artifact
         uses: actions/upload-artifact@v2
