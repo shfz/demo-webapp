@@ -1,8 +1,10 @@
 from flask import *
 import pymysql.cursors
+from shfzflask import shfztrace
 
 # flaskの初期化
 app = Flask(__name__)
+shfztrace(app, fuzzUrl="http://host.docker.internal:53653")
 
 # session の秘密鍵
 app.secret_key = "sugoi_himitu"
@@ -164,4 +166,4 @@ def debug_post():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=80, debug=True)

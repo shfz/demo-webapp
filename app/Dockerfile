@@ -1,7 +1,9 @@
-FROM tiangolo/uwsgi-nginx-flask:python3.6-alpine3.8
+FROM python:alpine
 
-RUN pip install -U pip
+WORKDIR /app
 
-RUN pip install -U flask PyMySQL
+RUN pip install -U flask PyMySQL shfzflask
 
 COPY ./ /app
+
+CMD ["python", "main.py"]
