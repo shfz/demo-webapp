@@ -42,8 +42,8 @@ jobs:
       - name: run shfz server
         run: ./shfz server &
 
-      - name: fuzzing
-        run: ./shfz run -f demo-typescript/index.js -n 100
+      - name: run fuzzing
+        run: ./shfz run -f fuzz/scenario.js -n 100
 
       - id: report
         name: export report
