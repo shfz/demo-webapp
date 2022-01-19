@@ -148,8 +148,8 @@ def register():
 @app.route("/logout")
 def logout():
     # セッションを削除しトップページへリダイレクト
-    session["login"]: bool = False
-    session["username"]: str = None
+    session["login"] = False
+    session["username"] = None
     return redirect("/")
 
 
