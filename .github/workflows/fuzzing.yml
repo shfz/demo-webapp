@@ -33,7 +33,7 @@ jobs:
         run: sleep 20
 
       - name: SHFZ setup
-        uses: shfz/shfz-actions-setup@v0.0.2
+        uses: shfz/shfz-actions-setup@v0.0.3
         with:
           version: "0.0.2"
 
