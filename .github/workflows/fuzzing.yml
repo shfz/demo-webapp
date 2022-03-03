@@ -41,7 +41,7 @@ jobs:
         run: shfz run -f fuzz/scenario.js -n 100
 
       - name: SHFZ report
-        uses: shfz/shfz-actions-report@v0.0.1
+        uses: shfz/shfz-actions-report@v0.0.2
         with:
           path: "/app"
 
