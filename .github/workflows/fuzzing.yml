@@ -40,31 +40,10 @@ jobs:
       - name: run fuzzing
         run: shfz run -f fuzz/scenario.js -n 100
 
-      - name: export fuzzing report
-        run: >
-          curl
-          -F "hash=${{ github.sha }}"
-          -F "repo=${{ github.repository }}"
-          -F "id=${{ github.run_id }}"
-          -F "job=${{ github.job }}"
-          -F "number=${{ github.run_number }}"
-          -F "path=/app"
-          http://localhost:53653/report > report.md
-      - name: create issue
-        uses: peter-evans/create-issue-from-file@v3
+      - name: SHFZ report
+        uses: shfz/shfz-actions-report@v0.0.1
         with:
-          title: shfz result
-          content-filepath: ./report.md
-          labels: |
-            shfz
-
-      - name: export fuzzing data
-        run: curl http://localhost:53653/data > result.json
-      - name: upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: result.json
-          path: ./result.json
+          path: "/app"
 
       - name: export application log
         run: docker logs demo-webapp_app_1 > app.log
