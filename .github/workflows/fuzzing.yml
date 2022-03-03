@@ -33,12 +33,12 @@ jobs:
         run: sleep 20
 
       - name: SHFZ setup
-        uses: shfz/shfz-actions-setup@v0.0.1
+        uses: shfz/shfz-actions-setup@v0.0.2
         with:
           version: "0.0.2"
 
       - name: run fuzzing
-        run: ./shfz run -f fuzz/scenario.js -n 100
+        run: shfz run -f fuzz/scenario.js -n 100
 
       - name: export fuzzing report
         run: >
