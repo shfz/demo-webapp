@@ -9,10 +9,34 @@ check [scenario](https://github.com/shfz/demo-webapp/blob/main/fuzz/scenario.ts)
 ## Try Fuzzing
 
 1. Fork this repository.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/shfz/demo-webapp/main/image/demo_1.png" />
+</p>
+
 2. Go to `Settings` -> `General` -> `Features` -> enable `Issues`.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/shfz/demo-webapp/main/image/demo_2.png" />
+</p>
+
 3. Go to `Actions` -> enable workflows.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/shfz/demo-webapp/main/image/demo_3.png" />
+</p>
+
 4. Go to `Actions` -> `Workflows` -> `All workflows` -> `fuzzing`, click `Run workflow` button, select `Branch: main`, and click green `Run workflow` button.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/shfz/demo-webapp/main/image/demo_4.png" />
+</p>
+
 5. Fuzzing is started, and report is posted on issue.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/shfz/demo-webapp/main/image/demo_5.png" />
+</p>
 
 ## Memo app
 
