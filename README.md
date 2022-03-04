@@ -11,7 +11,7 @@ check [scenario](https://github.com/shfz/demo-webapp/blob/main/fuzz/scenario.ts)
 1. Fork this repository.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/shfz/demo-webapp/main/image/demo_1.png" />
+  <img src="https://raw.githubusercontent.com/shfz/demo-webapp/main/image/demo_1.png" width="587" height="355" />
 </p>
 
 2. Go to `Settings` -> `General` -> `Features` -> enable `Issues`.
@@ -23,13 +23,13 @@ check [scenario](https://github.com/shfz/demo-webapp/blob/main/fuzz/scenario.ts)
 3. Go to `Actions` -> enable workflows.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/shfz/demo-webapp/main/image/demo_3.png" />
+  <img src="https://raw.githubusercontent.com/shfz/demo-webapp/main/image/demo_3.png" width="597" height="360" />
 </p>
 
 4. Go to `Actions` -> `Workflows` -> `All workflows` -> `fuzzing`, click `Run workflow` button, select `Branch: main`, and click green `Run workflow` button.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/shfz/demo-webapp/main/image/demo_4.png" />
+  <img src="https://raw.githubusercontent.com/shfz/demo-webapp/main/image/demo_4.png" width="585" height="354" />
 </p>
 
 5. Fuzzing is started, and report is posted on issue.
