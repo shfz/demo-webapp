@@ -1,65 +1,65 @@
 # demo-webapp
 
-シンプルなメモ保存アプリ
+A memo app containing multiple vulnerabilities.
 
-※複数の脆弱性が含まれます
+Fuzzing Framework [shfz](https://github.com/shfz) is set in this repository, and you can fork this and try fuzzing.
 
-## セットアップ
+check [scenario](https://github.com/shfz/demo-webapp/blob/main/fuzz/scenario.ts) and [Actions workflow](https://github.com/shfz/demo-webapp/blob/main/.github/workflows/fuzzing.yml).
+
+## Try Fuzzing
+
+1. Fork this repository.
+2. Go to `Settings` -> `General` -> `Features` -> enable `Issues`.
+3. Go to `Actions` -> enable workflows.
+4. Go to `Actions` -> `Workflows` -> `All workflows` -> `fuzzing`, click `Run workflow` button, select `Branch: main`, and click green `Run workflow` button.
+5. Fuzzing is started, and report is posted on issue.
+
+## Memo app
+
+### setup
 
 ```
 $ docker-compose build
 $ docker-compose up -d
 ```
 
-(起動後 30 秒程度は DB が初期化処理で応答しないので注意)
+> Database does not respond to initialization processing for about 30 seconds after startup.
 
-## 操作
+### Command
 
-- ソースコードをビルド
+#### Docker
+
+- build to image
 
 ```
 $ docker-compose build
 ```
 
-- 起動・再起動
+- run containers
 
 ```
 $ docker-compose up -d
 ```
 
-- 停止
+- stop containers
 
 ```
 $ docker-compose stop
 ```
 
-- 削除
+- delete containers
 
 ```
 $ docker-compose rm
 ```
 
-- ログ閲覧
+- show logs
 
 ```
 $ docker-compose logs
 ```
 
-### 操作例
-
-一旦サービスを停止する
-
-```
-$ docker-compose stop
-```
-
-停止しているサービスを再開する
-
-```
-$ docker-compose up -d
-```
-
-ソースコードを変更した場合
+- rebuild and restart service
 
 ```
 $ docker-compose stop
@@ -68,7 +68,7 @@ $ docker-compose build
 $ docker-compose up -d
 ```
 
-データベースを初期化する場合 (データをすべて消す・スキーマ変更・ユーザー名やパスワードの変更)
+- When initializing the database (Erase all data, Change schema, Change username and password)
 
 ```
 $ docker-compose stop
@@ -77,20 +77,20 @@ $ rm -rf ./db/data
 $ docker-compose up -d
 ```
 
-## 構成
+#### Database
 
-### データベース
-
-- mysql コマンドで接続
+- connect
 
 ```
-# mysql クライアントのインストール
+# install mysql-client
 $ sudo apt install -y mysql-client
 
-# mysql に接続
+# connect mysql
 $ mysql -u root -p -h 127.0.0.1 -P 3306 --protocol=tcp
 Enter password:
 ```
+
+- query
 
 ```
 mysql> use flask_db;
